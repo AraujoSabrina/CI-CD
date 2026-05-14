@@ -1,0 +1,27 @@
+name: Meu CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Baixar código
+      uses: actions/checkout@v3
+
+    - name: Instalar Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Instalar dependências
+      run: npm install
+
+    - name: Rodar testes
+      run: npm test
+
+    - name: Deploy (simples)
+      run: echo "Deploy realizado com sucesso!"
