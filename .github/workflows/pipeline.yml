@@ -1,5 +1,6 @@
-name: Meu CI/CD
+name: CI/CD Simples
 
+# Quando executar
 on:
   push:
     branches: [ "main" ]
@@ -9,19 +10,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # 1. Baixar o código do repositório
     - name: Baixar código
       uses: actions/checkout@v3
 
+    # 2. Instalar Node
     - name: Instalar Node
       uses: actions/setup-node@v3
       with:
         node-version: '18'
 
+    # 3. Instalar dependências
     - name: Instalar dependências
       run: npm install
 
+    # 4. Rodar testes (opcional)
     - name: Rodar testes
       run: npm test
+      continue-on-error: true
 
-    - name: Deploy (simples)
-      run: echo "Deploy realizado com sucesso!"
+    # 5. Build (opcional)
+    - name: Build
+      run: echo "Build realizado com sucesso!"
+
+    # 6. Deploy (simples simulado)
+    - name: Deploy
+      run: echo "Deploy realizado com sucesso 🚀"
